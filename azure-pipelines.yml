@@ -32,18 +32,26 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
-- task: CopyFiles@2
+- task: DotNetCoreCLI@2
+  displayName: Publish
   inputs:
-    SourceFolder: '$(Build.Repository.LocalPath)/'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    CleanTargetFolder: true
-    OverWrite: true
-
+    command: publish
+    publishWebProjects: false
+    projects: '$(projectDirectory)\hadar.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'SpringFramework_fullsources'
     publishLocation: 'Container'
+
+- task: DotNetCoreCLI@2
+  displayName: Publish
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: '$(projectDirectory)\hadar.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
