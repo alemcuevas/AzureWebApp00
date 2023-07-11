@@ -35,12 +35,11 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.Repository.LocalPath)/target'
+    SourceFolder: '$(Build.Repository.LocalPath)/'
     Contents: '**'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
     OverWrite: true
-  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
 
 
 - task: PublishBuildArtifacts@1
@@ -48,4 +47,3 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'SpringFramework_fullsources'
     publishLocation: 'Container'
-  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
