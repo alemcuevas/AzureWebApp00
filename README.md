@@ -39,5 +39,3 @@ Star or fork this repository to show your support or create your own version.
 Share this web app with others who are interested in learning about DevSecOps.
 License
 This project is licensed under the MIT License. See the LICENSE file for more details.
-
-1: What is DevSecOps? - Red Hat 2: DevSecOps Tools and Dev Sec Ops Services | Microsoft Azure
